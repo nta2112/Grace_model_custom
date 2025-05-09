@@ -1,7 +1,7 @@
 # GRACE
 The source code for "Graph Few-Shot Learning via Adaptive Spectrum Experts and Cross-Set Distribution Calibration"
 
-
+# REQUIREMENT
 conda create -n GPNFSL python=3.8
 
 conda install pytorch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 pytorch-cuda=11.8 -c pytorch -c nvidia
