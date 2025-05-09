@@ -79,9 +79,9 @@ if __name__ == '__main__':
     adj = adj + identity
     adj = adj.coalesce()
     row, col = adj.indices()
-    deg = torch.sparse.sum(adj, dim=1).to_dense()  # 计算度数
+    deg = torch.sparse.sum(adj, dim=1).to_dense()  
     deg_inv_sqrt = torch.pow(deg, -0.5)
-    deg_inv_sqrt[deg_inv_sqrt == float('inf')] = 0  # 处理除以零的情况
+    deg_inv_sqrt[deg_inv_sqrt == float('inf')] = 0  
     D_inv_sqrt = torch.sparse.FloatTensor(
         torch.stack([torch.arange(data.num_nodes), torch.arange(data.num_nodes)]),
         deg_inv_sqrt,
@@ -123,7 +123,7 @@ if __name__ == '__main__':
             z_dim = embeddings.size()[1]
             support_embeddings = embeddings[id_support]
             support_embeddings = support_embeddings.view([n_way, k_shot, z_dim])
-            prototype_embeddings = support_embeddings.mean(dim=1)  # 计算类别原型
+            prototype_embeddings = support_embeddings.mean(dim=1)  
         query_embeddings = embeddings[id_query]
         dists = euclidean_dist(query_embeddings, prototype_embeddings)
         output = F.log_softmax(-dists, dim=1)
@@ -171,7 +171,7 @@ if __name__ == '__main__':
                 z_dim = embeddings.size()[1]
                 support_embeddings = embeddings[test_id_support]
                 support_embeddings = support_embeddings.view([n_way, k_shot, z_dim])
-                prototype_embeddings = support_embeddings.mean(dim=1)  # 计算类别原型
+                prototype_embeddings = support_embeddings.mean(dim=1)  
             query_embeddings = embeddings[test_id_query]
             dists = euclidean_dist(query_embeddings, prototype_embeddings)
             output = F.log_softmax(-dists, dim=1)
