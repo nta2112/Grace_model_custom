@@ -32,7 +32,6 @@ def get_parser():
     parser.add_argument('--model_temperature', type=float, default=2.0)
     parser.add_argument('--stepsize', type=int, default=10)
     parser.add_argument('--stepgamma', type=float, default=0.99)
-    parser.add_argument('--use_cor', action='store_true', help='use correlation')
 
     return parser
 
@@ -113,17 +112,10 @@ if __name__ == '__main__':
             sample_idx_q.extend(random.sample(id_by_class[c], m_qry))
         id_support = sample_idx_n
         id_query = sample_idx_q
-        if args.use_cor == True:
-            embeddings, gate_weights, low_feature, high_feature, corrected_prototypes = model.forward_with_correction(
-                features, adj, id_support, id_query, n_way, k_shot, bandwidth
-            )
-            prototype_embeddings = corrected_prototypes
-        else:
-            embeddings, gate_weights, low_feature, high_feature = model.forward(features, adj)
-            z_dim = embeddings.size()[1]
-            support_embeddings = embeddings[id_support]
-            support_embeddings = support_embeddings.view([n_way, k_shot, z_dim])
-            prototype_embeddings = support_embeddings.mean(dim=1)  
+        embeddings, gate_weights, low_feature, high_feature, corrected_prototypes = model.forward_with_correction(
+            features, adj, id_support, id_query, n_way, k_shot, bandwidth
+        )
+        prototype_embeddings = corrected_prototypes 
         query_embeddings = embeddings[id_query]
         dists = euclidean_dist(query_embeddings, prototype_embeddings)
         output = F.log_softmax(-dists, dim=1)
@@ -161,17 +153,10 @@ if __name__ == '__main__':
         for i in range(test_num):
             test_id_support, test_id_query, test_class_selected = \
                 test_task_generator(id_by_class, eval_class, n_way, k_shot, m_qry)
-            if args.use_cor == True:
-                embeddings, gate_weights, low_feature, high_feature, corrected_prototypes = model.forward_with_correction(
-                    features, adj, test_id_support, test_id_query, n_way, k_shot, bandwidth
-                )
-                prototype_embeddings = corrected_prototypes
-            else:
-                embeddings, gate_weights, low_feature, high_feature = model.forward(features, adj)
-                z_dim = embeddings.size()[1]
-                support_embeddings = embeddings[test_id_support]
-                support_embeddings = support_embeddings.view([n_way, k_shot, z_dim])
-                prototype_embeddings = support_embeddings.mean(dim=1)  
+            embeddings, gate_weights, low_feature, high_feature, corrected_prototypes = model.forward_with_correction(
+                features, adj, test_id_support, test_id_query, n_way, k_shot, bandwidth
+            )
+            prototype_embeddings = corrected_prototypes
             query_embeddings = embeddings[test_id_query]
             dists = euclidean_dist(query_embeddings, prototype_embeddings)
             output = F.log_softmax(-dists, dim=1)
