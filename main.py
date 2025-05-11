@@ -16,7 +16,7 @@ import os
 import os
 os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 
-# python main.py --use_cor
+# python main.py 
 
 def get_parser():
     parser = argparse.ArgumentParser(description='Description: Script to run our model.')
