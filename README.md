@@ -30,4 +30,4 @@ Modify the experimental settings in main.py by adjusting the following parameter
 
 After setting the above parameters, run the following command in the terminal:
 
-`python main.py --use_cor`
+`python main.py`
