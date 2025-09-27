@@ -31,3 +31,18 @@ Modify the experimental settings in main.py by adjusting the following parameter
 After setting the above parameters, run the following command in the terminal:
 
 `python main.py`
+
+# Cite
+If you find our work can help your research, please cite our work! <br>
+
+```
+@inproceedings{liu2025simple,
+  title={A Simple Graph Contrastive Learning Framework for Short Text Classification},
+  author={Liu, Yonghao and Wang, Yajun and Guo, Chunli and Pang, wei and Li, Ximing and Giunchiglia, Fausto and Feng, Xiaoyue and Guan, Renchu},
+  booktitle={NeurIPS},
+  year={2025}
+}
+```
+
+# Contact
+If you have any question, feel free to contact via [email](mailto:yonghao20@mails.jlu.edu.cn).
