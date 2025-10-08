@@ -37,7 +37,7 @@ If you find our work can help your research, please cite our work! <br>
 
 ```
 @inproceedings{liu2025simple,
-  title={A Simple Graph Contrastive Learning Framework for Short Text Classification},
+  title={Graph Few-Shot Learning via Adaptive Spectrum Experts and Cross-Set Distribution Calibration},
   author={Liu, Yonghao and Wang, Yajun and Guo, Chunli and Pang, wei and Li, Ximing and Giunchiglia, Fausto and Feng, Xiaoyue and Guan, Renchu},
   booktitle={NeurIPS},
   year={2025}
