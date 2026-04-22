@@ -117,7 +117,8 @@ hidden = {
     'Cora': 512,
     'CiteSeer': 32,
     'Amazon-Computer': 32,
-    'Coauthor-CS': 32
+    'Coauthor-CS': 32,
+    'tlu': 32
 }
 dropt = {
     'CoraFull': 0,
@@ -126,7 +127,8 @@ dropt = {
     'Cora': 0.6,
     'CiteSeer': 0,
     'Amazon-Computer': 0,
-    'Coauthor-CS': 0
+    'Coauthor-CS': 0,
+    'tlu': 0
 }
 patience = {
     'CoraFull': 10,
@@ -135,7 +137,8 @@ patience = {
     'Cora': 5,
     'CiteSeer': 10,
     'Amazon-Computer': 10,
-    'Coauthor-CS': 10
+    'Coauthor-CS': 10,
+    'tlu': 10
 }
 lr = {
     'CoraFull': 0.001,
@@ -144,7 +147,8 @@ lr = {
     'Cora': 0.0005,
     'CiteSeer': 0.001,
     'Amazon-Computer': 0.001,
-    'Coauthor-CS': 0.001
+    'Coauthor-CS': 0.001,
+    'tlu': 0.001
 }
 gate = {
     'CoraFull': 0.1,
@@ -153,7 +157,8 @@ gate = {
     'Cora': 0.05,
     'CiteSeer': 0.1,
     'Amazon-Computer': 0.1,
-    'Coauthor-CS': 0.1
+    'Coauthor-CS': 0.1,
+    'tlu': 0.1
 }
 contrast = {
     'CoraFull': 1.,
@@ -162,5 +167,6 @@ contrast = {
     'Cora': 0.99,
     'CiteSeer': 1.,
     'Amazon-Computer': 1.,
-    'Coauthor-CS': 1.
+    'Coauthor-CS': 1.,
+    'tlu': 1.
 }

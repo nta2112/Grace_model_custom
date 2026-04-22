@@ -17,6 +17,7 @@ class_split = {
     "CiteSeer": {"train": 2, 'dev': 2, 'test': 2},
     "Reddit": {"train": 21, 'dev': 10, 'test': 10},
     'dblp': {"train": 77, 'dev': 30, 'test': 30},
+    'tlu': {"train": 21, 'dev': 5, 'test': 5},
 }
 
 class dblp_data():
@@ -96,7 +97,7 @@ def split(dataset_name):
         dataset = Reddit2(root='./dataset/' + dataset_name)
     elif dataset_name == 'ogbn-arxiv':
         dataset = PygNodePropPredDataset(name=dataset_name, root='./dataset/' + dataset_name)
-    elif dataset_name == 'dblp':
+    elif dataset_name == 'dblp' or dataset_name == 'tlu':
         dataset = load_DBLP()
     else:
         print("Dataset not support!")
