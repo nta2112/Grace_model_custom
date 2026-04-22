@@ -59,7 +59,18 @@ def load_DBLP(root='/content/duno/', dataset_source='dblp'):
     raw_labels[data_test['Index'].flatten()] = data_test["Label"]
 
     raw_labels_flat = raw_labels.flatten()
-    raw_labels_flat = np.array([str(x) if x is not None else "unlabeled" for x in raw_labels_flat])
+    # Làm sạch nhãn: xử lý trường hợp nhãn bị bọc trong mảng hoặc có ký tự thừa
+    def clean_label(x):
+        if x is None: return "unlabeled"
+        # Nếu là mảng numpy (thường gặp khi load từ .mat)
+        if isinstance(x, (np.ndarray, list)):
+            if len(x) > 0: x = x[0]
+            else: return "unlabeled"
+        s = str(x).strip()
+        # Loại bỏ các dấu ngoặc hoặc nháy nếu có (ví dụ: "['label']" -> "label")
+        return s.replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+    
+    raw_labels_flat = np.array([clean_label(x) for x in raw_labels_flat])
     
     lb = preprocessing.LabelBinarizer()
     lb.fit(raw_labels_flat)
@@ -118,6 +129,7 @@ def split(dataset_name):
         test_names = custom_splits.get('test', dev_names)
         
         if hasattr(dataset, 'lb') and dataset.lb is not None:
+            print("Classes in dataset:", dataset.lb.classes_[:10])
             class_to_id = {name: i for i, name in enumerate(dataset.lb.classes_)}
             train_class = [class_to_id[name] for name in train_names if name in class_to_id]
             dev_class = [class_to_id[name] for name in dev_names if name in class_to_id]
