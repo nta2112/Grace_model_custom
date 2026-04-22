@@ -52,9 +52,9 @@ class ResNet12(nn.Module):
         return x.view(x.size(0), -1)
 
 # --- CẤU HÌNH ---
-IMAGE_DIR = r"C:\Users\HP\OneDrive\Desktop\AGNN_01\AGNN\data\tlu-states\images"
-SPLIT_JSON = r"C:\Users\HP\OneDrive\Desktop\split\full_split.json"
-OUTPUT_DIR = r"C:\Users\HP\OneDrive\Desktop\GPN\GRACE\few_shot_data"
+IMAGE_DIR = "/content/images" # Bạn hãy đảm bảo đường dẫn ảnh này đúng trên Colab
+SPLIT_JSON = "/content/data/full_split.json"
+OUTPUT_DIR = "/content/duno"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Khởi tạo model ResNet-12
