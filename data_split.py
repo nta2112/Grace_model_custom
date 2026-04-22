@@ -55,8 +55,8 @@ def load_DBLP(root='/content/duno/', dataset_source='dblp'):
     data_test = sio.loadmat(test_path)
 
     raw_labels = np.empty((num_nodes, 1), dtype=object)
-    raw_labels[data_train['Index']] = data_train["Label"]
-    raw_labels[data_test['Index']] = data_test["Label"]
+    raw_labels[data_train['Index'].flatten()] = data_train["Label"]
+    raw_labels[data_test['Index'].flatten()] = data_test["Label"]
 
     raw_labels_flat = raw_labels.flatten()
     
@@ -65,8 +65,8 @@ def load_DBLP(root='/content/duno/', dataset_source='dblp'):
     labels_encoded = lb.transform(raw_labels_flat)
     
     features = np.zeros((num_nodes, data_train["Attributes"].shape[1]))
-    features[data_train['Index']] = data_train["Attributes"].toarray()
-    features[data_test['Index']] = data_test["Attributes"].toarray()
+    features[data_train['Index'].flatten()] = data_train["Attributes"].toarray()
+    features[data_test['Index'].flatten()] = data_test["Attributes"].toarray()
 
     features = torch.FloatTensor(features)
     if labels_encoded.shape[1] == 1:
