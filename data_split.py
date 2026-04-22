@@ -59,6 +59,7 @@ def load_DBLP(root='/content/duno/', dataset_source='dblp'):
     raw_labels[data_test['Index'].flatten()] = data_test["Label"]
 
     raw_labels_flat = raw_labels.flatten()
+    raw_labels_flat = np.array([str(x) if x is not None else "unlabeled" for x in raw_labels_flat])
     
     lb = preprocessing.LabelBinarizer()
     lb.fit(raw_labels_flat)
