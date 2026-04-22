@@ -98,7 +98,7 @@ def split(dataset_name):
     elif dataset_name == 'ogbn-arxiv':
         dataset = PygNodePropPredDataset(name=dataset_name, root='./dataset/' + dataset_name)
     elif dataset_name == 'dblp' or dataset_name == 'tlu':
-        dataset = load_DBLP()
+        dataset = load_DBLP(dataset_source=dataset_name)
     else:
         print("Dataset not support!")
         exit(0)
