@@ -35,7 +35,7 @@ class dblp_dataset():
         self.num_classes = num_classes
         self.lb = lb
 
-def load_DBLP(root='/content/duno/', dataset_source='dblp'):
+def load_DBLP(root='/content/duno', dataset_source='dblp'):
     dataset = dblp_data()
     n1s = []
     n2s = []
@@ -118,7 +118,7 @@ def split(dataset_name):
     data = dataset.data
     num_nodes = data.num_nodes
     
-    json_path = "/content/data/full_split.json"
+    json_path = "/content/data/split.json"
     if os.path.exists(json_path):
         print(f"Loading custom split from {json_path}...")
         with open(json_path, 'r', encoding='utf-8') as f:
